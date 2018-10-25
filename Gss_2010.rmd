@@ -1,6 +1,6 @@
 ---
 title: "Social Survey 2010"
-author: "Put your name here!"
+author: "Giselle Torres!"
 date: "Fall 2018"
 output:
   html_document:
@@ -10,7 +10,6 @@ output:
 ```{r include=FALSE,echo=FALSE}
 require(tidyvertse)
 require(tigerstats)
-
 ```
 
 # Introduction
@@ -43,14 +42,30 @@ alldata <- read.csv(file="gss2010.csv", header=TRUE)
 barchartGC(~race+condrift, data=alldata, type = "percent") 
 ```
 
-
+put some explanatory stuff here.
+white and other people 10% not believe the continental drift where as black people had 20% of people not believe.
+White and other people had about 90% believe the continental drift while only 75% of black people believed in the continental drift.
 ### Numerical Descriptive Results
 
+
+```{r}
+barchartGC(~race+cappun, data=alldata, type = "percent") 
+```
+In the debate of capital punishment, in the result of black people about 50% agreed while about 55% disagreed. The other people about 60% agreed and 40% disagreed. White people about 70% agreed and 30% disagreed.
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 ## Inferential Results
+```{r}
+tab1 =xtabs(~race+condrift, data=alldata) 
+rowPerc(tab1)
+colPerc(tab1)
+```
+
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+```{r}
+chisqtestGC(tab1,graph=TRUE)
+```
 
 
 # Discussion and Conclusion
